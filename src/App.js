@@ -1,11 +1,27 @@
 import React from 'react';
+import Todo from './components/TodoComponents/Todo';
+import TodoList from './components/TodoComponents/TodoList.js';
+
+const listItems = [
+  {
+    task: 'Organize Garage',
+    id: 1528817077286,
+    completed: false
+  },
+  {
+    task: 'Bake Cookies',
+    id: 1528817084358,
+    completed: false
+  }
+];
 
 class App extends React.Component {
   constructor(){
     super();
     this.state = {
-      
+      items: listItems,
     }
+
   }
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
@@ -14,6 +30,10 @@ class App extends React.Component {
     return (
       <div>
         <h2>To-Do List!</h2>
+        {this.state.items.map(item => {
+          <TodoList />
+        })}
+        <Todo />
       </div>
     );
   }
