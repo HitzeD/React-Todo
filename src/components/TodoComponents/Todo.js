@@ -1,10 +1,9 @@
 import React from 'react';
-import TodoForm from './TodoForm.js';
 
 const Todo = props => {
     return (
         <div>
-            <p>{props.item.task}</p>
+            <h4>{props.item.task}</h4>
         </div>
     )
 }

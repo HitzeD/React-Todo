@@ -3,8 +3,8 @@ import React from 'react';
 
 const TodoForm = props => {
     return (
-        <form>  
-            <input type="text" placeholder="Todo Items Here" />
+        <form onSubmit={props.work}> 
+            <input placeholder="Todo Items Here" onChange={props.clicker} />
             <button role="submit">Submit</button>
             <button>Clear</button>
         </form>

@@ -19,10 +19,29 @@ class App extends React.Component {
   constructor(){
     super();
     this.state = {
-      items: listItems,
+      stateItems: listItems,
       task: ''
     }
 
+  }
+
+  handleChanges = event => {
+    console.log(event.target.value);
+    this.setState({
+      task: {
+        ...this.state.task,
+        task: event.target.value
+      }
+    })
+  }
+
+
+  addItem = event => {
+    event.preventDefault();
+    this.setState({
+      stateItems: [...this.state.stateItems, this.state.task],
+      task: ''
+    })
   }
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
@@ -31,8 +50,8 @@ class App extends React.Component {
     return (
       <div>
         <h2>To-Do List!</h2>
-        <TodoList items={this.state.items} />
-        <TodoForm />
+        <TodoList items={this.state.stateItems} />
+        <TodoForm work={this.addItem} clicker={this.handleChanges} />
       </div>
     );
   }
