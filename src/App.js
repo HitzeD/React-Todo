@@ -1,6 +1,6 @@
 import React from 'react';
-import Todo from './components/TodoComponents/Todo';
 import TodoList from './components/TodoComponents/TodoList.js';
+import TodoForm from './components/TodoComponents/TodoForm.js';
 
 const listItems = [
   {
@@ -20,6 +20,7 @@ class App extends React.Component {
     super();
     this.state = {
       items: listItems,
+      task: ''
     }
 
   }
@@ -30,10 +31,8 @@ class App extends React.Component {
     return (
       <div>
         <h2>To-Do List!</h2>
-        {this.state.items.map(item => {
-          <TodoList />
-        })}
-        <Todo />
+        <TodoList items={this.state.items} />
+        <TodoForm />
       </div>
     );
   }
