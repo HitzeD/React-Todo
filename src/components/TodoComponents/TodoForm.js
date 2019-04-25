@@ -1,12 +1,13 @@
 import React from 'react';
+import './Todo.css'
 
 
 const TodoForm = props => {
     return (
-        <form onSubmit={props.work}> 
+        <form className="formList" onSubmit={props.work}> 
             <input value={props.task} placeholder="Todo Items Here" onChange={props.clicker} name="openJobs" />
-            <button type="submit">Submit</button>
-            <button onClick={props.removeItems} >Clear</button>
+            <button className="btn" type="submit">Submit</button>
+            <button className="btn del" onClick={props.removeItems} >Clear</button>
         </form>
     );
 }

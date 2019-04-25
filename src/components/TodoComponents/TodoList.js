@@ -5,7 +5,7 @@ import Todo from './Todo.js';
 
 function TodoList(props) {
     return (
-      <ul>
+      <ul className="listWrap">
         {props.items.map(item => {
             return(
                 <Todo item={item} key={item.id} click={props.taskClick} />

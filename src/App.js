@@ -70,7 +70,7 @@ class App extends React.Component {
     event.preventDefault();
     this.setState({
       stateItems: [...this.state.stateItems, this.state.task],
-
+      task: '',
     })
   }
   // you will need a place to store your state in this component.
