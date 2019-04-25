@@ -23,20 +23,28 @@ class App extends React.Component {
       stateItems: listItems,
       task: '',
       id: '',
-      completed: false
+      completed: '',
     }
 
   }
-
+  
   handleChanges = event => {
-    // console.log(event.target.value);
     this.setState({
       task: {
         ...this.state.task,
         task: event.target.value,
         id: Date.now(),
-      },
+        completed: false,
+      }
     })
+    
+    console.log(event.target);
+  }
+
+  removeItems = () => {
+    this.setState({
+      stateItems: this.state.stateItems.filter(item => !item.completed)
+    });
   }
 
   taskClick = id => {
@@ -54,7 +62,6 @@ class App extends React.Component {
     console.log(newList)
     this.setState({
       completed: !this.state.completed,
-      // id: Date.now(),
     });
   }
 
@@ -63,9 +70,7 @@ class App extends React.Component {
     event.preventDefault();
     this.setState({
       stateItems: [...this.state.stateItems, this.state.task],
-      task: '',
-      // id: Date.now(),
-      completed: false
+
     })
   }
   // you will need a place to store your state in this component.
@@ -76,7 +81,7 @@ class App extends React.Component {
       <div>
         <h2>To-Do List!</h2>
         <TodoList items={this.state.stateItems} taskClick={this.taskClick} />
-        <TodoForm work={this.addItem} clicker={this.handleChanges} />
+        <TodoForm work={this.addItem} clicker={this.handleChanges} removeItems={this.removeItems} />
       </div>
     );
   }
