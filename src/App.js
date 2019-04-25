@@ -2,6 +2,7 @@ import React from 'react';
 import TodoList from './components/TodoComponents/TodoList.js';
 import TodoForm from './components/TodoComponents/TodoForm.js';
 
+
 const listItems = [
   {
     task: 'Organize Garage',
@@ -20,19 +21,41 @@ class App extends React.Component {
     super();
     this.state = {
       stateItems: listItems,
-      task: ''
+      task: '',
+      id: '',
+      completed: false
     }
 
   }
 
   handleChanges = event => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     this.setState({
       task: {
         ...this.state.task,
-        task: event.target.value
+        task: event.target.value,
+        id: Date.now(),
+      },
+    })
+  }
+
+  taskClick = id => {
+    console.log(this.state.completed);
+    console.log(id);
+    const newList = this.state.stateItems.map(item => {
+      if(item.id === id){
+        item.completed = !item.completed;
+        return item;
+      } else {
+        return item;
       }
     })
+    this.setState({ stateitems: newList });
+    console.log(newList)
+    this.setState({
+      completed: !this.state.completed,
+      // id: Date.now(),
+    });
   }
 
 
@@ -40,7 +63,9 @@ class App extends React.Component {
     event.preventDefault();
     this.setState({
       stateItems: [...this.state.stateItems, this.state.task],
-      task: ''
+      task: '',
+      // id: Date.now(),
+      completed: false
     })
   }
   // you will need a place to store your state in this component.
@@ -50,7 +75,7 @@ class App extends React.Component {
     return (
       <div>
         <h2>To-Do List!</h2>
-        <TodoList items={this.state.stateItems} />
+        <TodoList items={this.state.stateItems} taskClick={this.taskClick} />
         <TodoForm work={this.addItem} clicker={this.handleChanges} />
       </div>
     );
