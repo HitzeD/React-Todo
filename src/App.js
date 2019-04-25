@@ -21,9 +21,11 @@ class App extends React.Component {
     super();
     this.state = {
       stateItems: listItems,
-      task: '',
-      id: '',
-      completed: '',
+      task: {
+        task: '',
+        id: '',
+        completed: '',
+      }
     }
 
   }
@@ -70,7 +72,9 @@ class App extends React.Component {
     event.preventDefault();
     this.setState({
       stateItems: [...this.state.stateItems, this.state.task],
-      task: '',
+      task: {
+        task: '',
+      }
     })
   }
   // you will need a place to store your state in this component.
@@ -81,7 +85,7 @@ class App extends React.Component {
       <div>
         <h2>To-Do List!</h2>
         <TodoList items={this.state.stateItems} taskClick={this.taskClick} />
-        <TodoForm work={this.addItem} clicker={this.handleChanges} removeItems={this.removeItems} />
+        <TodoForm work={this.addItem} clicker={this.handleChanges} removeItems={this.removeItems} task={this.state.task} />
       </div>
     );
   }
